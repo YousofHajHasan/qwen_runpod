@@ -68,14 +68,13 @@ def handler(event):
             model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
                 "Qwen/Qwen2.5-VL-32B-Instruct",
                 torch_dtype="auto",
-                device_map="auto",           # Automatically place layers on available devices
-                offload_folder="/tmp"        # Offload unused layers to CPU/disk to reduce GPU memory usage
+                device_map="auto",           # Automatically place layers on available devices                
             )
             processor = AutoProcessor.from_pretrained("Qwen/Qwen2.5-VL-32B-Instruct")
             print("Model and processor loaded successfully.")
 
         # Decode base64 image
-        image_data = base64.b64decode(event["image_base64"])
+        image_data = base64.b64decode(event["input"]["image_base64"])
         image = Image.open(io.BytesIO(image_data)).convert("RGB")
 
         # Prepare messages for processor
