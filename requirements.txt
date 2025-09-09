@@ -3,3 +3,4 @@ Pillow
 git+https://github.com/huggingface/transformers
 qwen-vl-utils[decord]==0.0.8
 runpod
+torchvision
